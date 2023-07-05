@@ -4,7 +4,7 @@
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://cevicherias.informaticapp.com/inventario/'.$_POST['inv_id'],
+      CURLOPT_URL => 'https://cevicherias.informaticapp.com/inventario/'.$_GET['inv_id'],
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -18,8 +18,7 @@
       '&inv_tipo_movimiento='.$_POST["inv_tipo_movimiento"].
       '&inv_cantidad='.$_POST["inv_cantidad"].
       '&inv_fecha_ing='.$_POST["inv_fecha_ing"].
-      '&inv_fecha_vencimiento='.$_POST["inv_fecha_vencimiento"].
-      '&sucu_id='.$_POST["sucu_id"],
+      '&inv_fecha_vencimiento='.$_POST["inv_fecha_vencimiento"],
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/x-www-form-urlencoded',
         'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
@@ -100,28 +99,6 @@
 
     curl_close($curl);
     $proveedores = json_decode($response, true);
-
-
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VBR04xOEVqRXdCOC5kenFDZFg1NW5OU3U2NTU5LkFHOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlcTNvN3M5Ly84Lmh6T3FneWdVcjZGcVdSN1hiYzNyQw=='
-      ),
-    ));
-
-    $response = curl_exec($curl);
-
-    curl_close($curl);
-    $sucursal = json_decode($response, true);
 
 }
 ?>
@@ -267,7 +244,7 @@
                                         <option type="text" value="<?=$proveedores["prov_id"]?>"><?= $proveedores["prov_nombre"] ?></option>
                                         <?php endforeach?>
                                       </select>
-                                    </div>                                    
+                                    </div>                                   
                                     
                                     <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Modifique el Movimiento</label>
@@ -291,15 +268,6 @@
                                         <label for="exampleInputPassword1" class="form-label">Fecha de Vencimiento</label>
                                         <input type="date" name="inv_fecha_vencimiento" class="form-control" value="<?= $data["Detalles"]["0"]['inv_fecha_vencimiento'] ?>">
                                     </div>                                 
-
-                                    <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Modifique la Sucursal</label>
-                                    <select name="sucu_id" class="form-select form-select-sm" aria-label=".form-select-sm example" >
-                                      <?php foreach($sucursal["Detalles"] as $sucursal):?>	
-                                      <option type="text" value="<?=$sucursal["sucu_id"]?>"><?= $sucursal["sucu_nombre"] ?></option>
-                                      <?php endforeach?>
-                                    </select>
-                                    </div>
 
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                     <a href="inventario_html.php" class="btn btn-danger">Cancelar</a>

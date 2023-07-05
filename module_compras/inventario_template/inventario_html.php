@@ -155,7 +155,6 @@
                                       <th scope="col">Cantidad</th>
                                       <th scope="col">Fecha Entrada</th>                                       
                                       <th scope="col">Fecha Vencimiento</th>
-                                      <th scope="col">Sucursal</th>
                                       <th scope="col" colspan="2">Operaciones</th>
                                     </tr>
                                     </thead>
@@ -168,7 +167,6 @@
                                         <td><?= $inventario["inv_cantidad"] ?></td>
                                         <td><?= $inventario["inv_fecha_ing"] ?></td>
                                         <td><?= $inventario["inv_fecha_vencimiento"] ?></td>
-                                        <td><?= $inventario["sucu_nombre"] ?></td>
                                         <td><a href="inventario_editar_html.php?inv_id=<?= $inventario['inv_id'] ?>" class="btn"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                         <td><a href="inventario_eliminar_html.php?inv_id=<?= $inventario['inv_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></a></td>
                                       </tr>
