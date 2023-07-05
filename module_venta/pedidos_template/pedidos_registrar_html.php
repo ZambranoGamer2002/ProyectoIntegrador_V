@@ -13,13 +13,13 @@
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => 
-      'ped_num_pedido='.$_POST["ped_num_pedido"].
+      CURLOPT_POSTFIELDS =>
+      'cli_id='.$_POST["cli_id"].
+      '&ped_num_pedido='.$_POST["ped_num_pedido"].
       '&ped_tipo_compra='.$_POST["ped_tipo_compra"].
       '&ped_detalles='.$_POST["ped_detalles"].
       '&pla_id='.$_POST["pla_id"].
-      '&ped_estado_pedido='.$_POST["ped_estado_pedido"].
-      '&cli_id='.$_POST["cli_id"],
+      '&ped_estado_pedido='.$_POST["ped_estado_pedido"],
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/x-www-form-urlencoded',
         'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
@@ -151,7 +151,6 @@
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
-                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -204,6 +203,16 @@
                             <div class="card-body">
 
                                 <form method="post">
+
+                                    <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Seleccione el Cliente</label>
+                                    <select name="cli_id" class="form-select form-select-sm" aria-label=".form-select-sm example" >
+                                      <?php foreach($clientes["Detalles"] as $clientes):?>	
+                                      <option type="text" value="<?=$clientes["cli_id"]?>"><?= $clientes["per_nombres"] ?></option>
+                                      <?php endforeach?>
+                                    </select>
+                                    </div>
+
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Número del Pedido</label>
                                         <input type="number" name="ped_num_pedido" class="form-control">
@@ -238,15 +247,6 @@
                                     <select name="pla_id" class="form-select form-select-sm" aria-label=".form-select-sm example" >
                                       <?php foreach($platos["Detalles"] as $platos):?>	
                                       <option type="text" value="<?=$platos["pla_id"]?>"><?= $platos["pla_comida"] ?></option>
-                                      <?php endforeach?>
-                                    </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Seleccione el nombre</label>
-                                    <select name="cli_id" class="form-select form-select-sm" aria-label=".form-select-sm example" >
-                                      <?php foreach($clientes["Detalles"] as $clientes):?>	
-                                      <option type="text" value="<?=$clientes["cli_id"]?>"><?= $clientes["per_nombres"] ?></option>
                                       <?php endforeach?>
                                     </select>
                                     </div>

@@ -172,8 +172,7 @@
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
-                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
-                                    
+
                                 </nav>
                             </div>  
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCompras" aria-expanded="false" aria-controls="collapseLayouts">

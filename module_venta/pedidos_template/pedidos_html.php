@@ -92,7 +92,6 @@
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
-                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -151,6 +150,7 @@
                                 <table  class="table table-striped">
                                     <thead>
                                     <tr>
+                                        <th scope="col">Cliente</th>
                                         <th scope="col">Número de Pedido</th>
                                         <th scope="col">Tipo de Compra</th>
                                         <th scope="col">Estado del Pedido</th>
@@ -163,6 +163,7 @@
                                     <tbody>
                                       <?php foreach($data["Detalles"] as $pedidos): ?>
                                         <tr>
+                                            <td><?= $pedidos["cli_id"] ?></td>
                                             <td><?= $pedidos["ped_num_pedido"] ?></td>
                                             <td><?= $pedidos["ped_tipo_compra"] ?></td>
                                             <td><?= $pedidos["ped_estado_pedido"] ?></td>               

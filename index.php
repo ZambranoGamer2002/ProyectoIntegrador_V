@@ -3,7 +3,7 @@ session_start();
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal',
+  CURLOPT_URL => 'https://cevicherias.informaticapp.com/pedidos',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,

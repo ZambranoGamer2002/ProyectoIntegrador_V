@@ -121,7 +121,6 @@
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
-                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -184,8 +183,8 @@
                                         <input type="text" name="prod_descripcion" placeholder="Descripción del Producto" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Producto</label>
-                                        <input type="number" name="prod_precio" placeholder="Precio del Producto" class="form-control">
+                                        <label for="exampleInputPassword1"  class="form-label">Precio</label>
+                                        <input type="text" name="prod_precio" placeholder="Descripción del Producto" class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Unidades del Producto</label>

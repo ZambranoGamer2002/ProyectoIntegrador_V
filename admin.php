@@ -3,7 +3,7 @@
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal/'.$_GET['sucu_id'],
+    CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal/'.$_GET['usu_id'],
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -34,7 +34,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link rel="shortcut icon" href="logo.ico">
-        <title><?= $valorGlobal[0]['sucu_nombre'] ?> - Dashboard</title>
+        <title><?= $valorGlobal[0]['usu_nombre'] ?> - Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -92,7 +92,6 @@
                                     <a class="nav-link" href="module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
-                                    <a class="nav-link" href="module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -120,7 +119,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="module_reportes/reportes_clientes_template/reportes_clientes_html.php">Reporte de Clientes</a>
                                     <a class="nav-link" href="module_reportes/reportes_pedidos_template/reportes_pedidos_html.php">Reporte de Pedidos</a>
-                                <a class="nav-link" href="module_reportes/reportes_productos_template/reportes_productos_html.php">Reporte de Inventario</a>
+                                    <a class="nav-link" href="module_reportes/reportes_productos_template/reportes_productos_html.php">Reporte de Inventario</a>
                                     <a class="nav-link" href="module_reportes/reportes_reclamos_template/reportes_reclamos_html.php">Reporte de Reclamos</a>
                                     <a class="nav-link" href="module_reportes/reportes_reservas_template/reportes_reservas_html.php">Reporte de Reservas</a>
                                     <a class="nav-link" href="module_reportes/reportes_ventas_template/reportes_ventas_html.php">Reporte de Ventas</a>
@@ -138,9 +137,8 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Bienvenido al <?= $valorGlobal[0]['sucu_nombre'] ?></h1>
+                        <h1 class="mt-4">Bienvenido <?= $valorGlobal[0]['usu_usuario'] ?></h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Eres <?= $valorGlobal[0]['tiad_nombre'] ?></li>
                         </ol>
                     </div>
                 </main>
