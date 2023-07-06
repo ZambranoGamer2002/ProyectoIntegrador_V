@@ -20,8 +20,7 @@
             '&per_correo='.$_POST["per_correo"],
           CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='           ),
-        ));
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        )));
         
 		$response = curl_exec($curl);
 
@@ -47,8 +46,7 @@
             '&res_hora='.$_POST["res_hora"],
 		CURLOPT_HTTPHEADER => array(
 			'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='            ),
-        ));
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        )));
 
 		$response = curl_exec($curl);
 
@@ -74,36 +72,32 @@
 <body>
 
     <div class="form-content">
-        <form>
+        <form method="post">
             <h2>Reserva tu Pedido</h2>
     
-            <label for="username">Nombres</label>
-            <input type="text" id="username" name="per_nombres" class="form-control" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">Nombres</label>
+            <input type="text" name="per_nombres" class="form-control" aria-describedby="emailHelp">
 
-            <label for="email">Apellidos</label>
-            <input type="text" id="email" name="per_apellidos" class="form-control" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">Apellidos</label>
+            <input type="text" name="per_apellidos" class="form-control" aria-describedby="emailHelp">
     
-            <label for="password">Telefono</label>
-            <input type="number" id="telefono" name="per_telefono" class="form-control" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">Telefono</label>
+            <input type="text" name="per_telefono" class="form-control" aria-describedby="emailHelp">
             
-            <label for="password">DNI</label>
-            <input type="number" id="dni" name="per_dni" class="form-control" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">DNI</label>
+            <input type="text" name="per_dni" class="form-control" aria-describedby="emailHelp">
 
-            <label for="password">Correo</label>
+            <label for="exampleInputEmail1" class="form-label">Correo</label>
             <input type="hidden" value="<?php echo date('Y-m-d'); ?>" name="res_fecha_pedido" class="form-control" aria-describedby="emailHelp">
             <input type="text" name="per_correo" class="form-control" aria-describedby="emailHelp">
             
-            <label for="password">Fecha de la Reserva</label>
+            <label for="exampleInputEmail1" class="form-label">Fecha de la reserva</label>
             <input type="date" name="res_fecha_reserva" class="form-control" aria-describedby="emailHelp">
 
-            <label for="password">Hora</label>
+            <label for="exampleInputEmail1" class="form-label">Hora</label>
             <input type="time" name="res_hora" class="form-control" aria-describedby="emailHelp">
-
-  
-            <div class="btn-field">
-            </div>
-               
-            <input type="submit" class="btn-ctr" value="Register">
+            
+            <input type="submit" class="btn-ctr" value="Reservar">
             <a href="index.php" class="btn btn-danger">Cancelar</a>
 
             
