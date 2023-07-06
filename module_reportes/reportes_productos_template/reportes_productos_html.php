@@ -25,7 +25,7 @@ $data = json_decode($response, true);
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Reporte de Productos</title>
+    <title>Reporte de Inventario</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
@@ -56,10 +56,10 @@ $data = json_decode($response, true);
             </ul>
         </nav>
         <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                    <div class="nav">
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Principal
@@ -136,14 +136,14 @@ $data = json_decode($response, true);
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Reporte de Productos</h1>
+                        <h1 class="mt-4">Reporte de Inventario</h1>
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="card-body px-0">
-                                    <a href="tipo_producto_registrar_html.php" class="btn btn-primary">Registrar</a>
+                                    <a href="../../fpdf/reportes_productos.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i> Generar reportes </a>
                                 </div>
                                 <table class="table">
-                                    <thead class="thead-light">
+                                  <thead class="thead-light">
                                     <tr>
 										<th scope="col">Nombre</th>
 										<th scope="col">Precio</th>

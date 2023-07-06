@@ -1,26 +1,24 @@
 <?php
-    session_start();
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://cevicherias.informaticapp.com/platos',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array(
-        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-      ),
+    CURLOPT_URL => 'https://cevicherias.informaticapp.com/platos',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='    ),
     ));
 
     $response = curl_exec($curl);
 
     curl_close($curl);
     $data = json_decode($response, true);
-    $valorGlobal = $_SESSION['mi_variable_global'];
 ?>
 
 <!DOCTYPE html>
@@ -136,14 +134,13 @@
 
 			<!-- TABLA -->
             <div id="layoutSidenav_content">
-                <main>
+            <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Lista de Platos</h1>
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="card-body px-0">
-                                    <a href="platos_registrar_html.php" class="btn btn-primary">Registrar un plato</a>
-                                    <a href="../tipo_comida_template/tipo_comida_html.php" class="btn btn-primary">Registrar un tipo de comida</a>
+                                    <a href="platos_registrar_html.php" class="btn btn-primary">Registrar</a>
                                 </div>
 								
 								
@@ -151,26 +148,22 @@
                                     <thead>
                                     <tr>
                                       <th scope="col">Nombre del Plato</th>
-                                      <th scope="col">Descripción</th>
-                                      <th scope="col">Precio del Plato</th>
-                                      <th scope="col">Sucursal</th>            
+                                      <th scope="col">Descripción del Plato</th>
+                                      <th scope="col">Precio del Plato</th>        
                                       <th scope="col">Tipo de Comida</th>
                                       <th scope="col" colspan="2">Operaciones</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                      <?php foreach($data["Detalles"] as $plato): ?>
-                                        <?php if ($plato["sucu_id"] == $valorGlobal["0"]["sucu_id"]): ?>
+                                      <?php foreach($data["Detalles"] as $platos): ?>
                                       <tr>
-                                        <td><?= $plato["pla_comida"] ?></td>
-                                        <td><?= $plato["pla_descrip"] ?></td>
-                                        <td><?= $plato["pla_precio"] ?></td>            
-                                        <td><?= $plato["sucu_nombre"] ?></td>
-                                        <td><?= $plato["tico_nombre"] ?></td>
-                                        <td><a href="platos_editar_html.php?pla_id=<?= $plato['pla_id'] ?>" class="btn"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                        <td><a href="platos_eliminar_html.php?pla_id=<?= $plato['pla_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></a></td>
+                                        <td><?= $platos["pla_comida"] ?></td>
+                                        <td><?= $platos["pla_descrip"] ?></td>
+                                        <td><?= $platos["pla_precio"] ?></td>
+                                        <td><?= $platos["tico_nombre"] ?></td>
+                                        <td><a href="platos_editar_html.php?pla_id=<?= $platos['pla_id'] ?>" class="btn"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <td><a href="platos_eliminar_html.php?pla_id=<?= $platos['pla_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></a></td>
                                       </tr>
-                                        <?php endif; ?>
                                       <?php endforeach ?>
                                     </tbody>
                                 </table>

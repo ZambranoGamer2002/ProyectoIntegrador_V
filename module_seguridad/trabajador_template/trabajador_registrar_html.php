@@ -20,8 +20,7 @@
             '&per_correo='.$_POST["per_correo"],
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        ),
         ));
 
 		$response = curl_exec($curl);
@@ -29,9 +28,7 @@
 		curl_close($curl);
 		$data = json_decode($response, true);
 
-        /*Agregando la persona a cliente */
         $idpersona = $data["per_id"];
-        //var_dump($idpersona);
 
 		$curl = curl_init();
 
@@ -45,50 +42,24 @@
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => 
-            'per_id='.$idpersona.
-            '&tra_sueldo='.$_POST["tra_sueldo"].
-            '&titra_id='.$_POST["titra_id"].
-            '&sucu_id='.$_POST["sucu_id"],
+        'per_id='.$idpersona.
+        '&tra_sueldo='.$_POST["tra_sueldo"].
+        '&titra_id='.$_POST["titra_id"],
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        ),
         ));
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		$data = json_decode($response, true);
+		$data2 = json_decode($response, true);
 		header("Location: trabajador_html.php");
-	}else{
-        session_start();
+}else{
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'http://cevicherias.informaticapp.com/sucursal',
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => '',
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 0,
-		  CURLOPT_FOLLOWLOCATION => true,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => 'GET',
-		  CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		  ),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$sucursal = json_decode($response, true);
-
-
-		/* Tabla de Tipo Trabajador*/
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://cevicherias.informaticapp.com/TipoTrabajador',
+		CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoTrabajador',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -97,17 +68,15 @@
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='		),
 		));
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
 		$tipoTrabajador = json_decode($response, true);
-        $valorGlobal = $_SESSION['mi_variable_global'];
+}
 
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -222,7 +191,7 @@
 
 			<!-- TABLA -->
             <div id="layoutSidenav_content">
-                <main>
+            <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Registrar Trabajador</h1>
                         <div class="card mb-4">
@@ -232,7 +201,6 @@
 								<div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nombres</label>
                                         <input type="text" name="per_nombres" class="form-control" aria-describedby="emailHelp">
-                                        <input type="hidden" name="sucu_id" value="<?= $valorGlobal["0"]["sucu_id"] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Apellidos</label>

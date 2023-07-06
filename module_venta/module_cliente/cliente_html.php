@@ -159,7 +159,6 @@ $valorGlobal = $_SESSION['mi_variable_global'];
                                     </thead>
 									<tbody>
 										<?php foreach($data["Detalles"] as $clientes):?>
-                                        <?php if ($clientes["sucu_id"] == $valorGlobal["0"]["sucu_id"]): ?>
 										<tr>
 											<td><?= $clientes["per_nombres"] ?></td>
 											<td><?= $clientes["per_apellidos"] ?></td>
@@ -169,7 +168,6 @@ $valorGlobal = $_SESSION['mi_variable_global'];
 											<td><a href="cliente_editar_html.php?cli_id=<?= $clientes['cli_id'] ?>" class="btn "><i class="fa-solid fa-pen-to-square"></i></a></td>
 											<td><a href="cliente_eliminar_html.php?cli_id=<?= $clientes['cli_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></i></a></td>
 										</tr>
-                                        <?php endif; ?>
 										<?php endforeach ?>
 									</tbody>
                                 </table>

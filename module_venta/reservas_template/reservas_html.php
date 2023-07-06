@@ -157,18 +157,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                       <?php foreach($data["Detalles"] as $reservas): ?>
-                                        <?php if ($reservas["sucu_id"] == $valorGlobal["0"]["sucu_id"]): ?>
+
                                         <tr>
-                                            <td><?= $reservas["res_autor"] ?></td>
+
+                                            <td><?= $reservas["per_nombres"] ?> <?= $reservas["per_apellidos"] ?> </td>
                                             <td><?= $reservas["res_fecha_pedido"] ?></td>
                                             <td><?= $reservas["res_fecha_reserva"] ?></td>
                                             <td><?= $reservas["res_hora"] ?></td>
                                             <td><a href="reservas_editar_html.php?res_id=<?= $reservas['res_id'] ?>" class="btn "><i class="fa-solid fa-pen-to-square"></i></a></td>
                                             <td><a href="reservas_eliminar_html.php?res_id=<?= $reservas['res_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></a></td>
                                         </tr>
-                                        <?php endif; ?>
+
                                       <?php endforeach ?>
+
                                     </tbody>
                                 </table>
                             </div>

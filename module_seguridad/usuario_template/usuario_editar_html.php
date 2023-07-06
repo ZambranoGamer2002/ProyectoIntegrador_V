@@ -12,19 +12,18 @@
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'PUT',
-        CURLOPT_POSTFIELDS => 
-            'usu_nombres='.$_POST["usu_nombres"].
-            '&usu_apellidos='.$_POST["usu_apellidos"].
-            '&usu_usuario='.$_POST["usu_usuario"].
+        CURLOPT_POSTFIELDS =>  
+            'usu_usuario='.$_POST["usu_usuario"].
             '&usu_clave='.$_POST["usu_clave"].
             '&tiad_id='.$_POST["tiad_id"].
-            '&empr_id='.$_POST["empr_id"].
-            '&sucu_id='.$_POST["sucu_id"],
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
-        ));
+            '&usu_nombres='.$_POST["usu_nombres"].
+            '&usu_apellidos='.$_POST["usu_apellidos"].
+            '&usu_usuario_token='.$_POST["usu_usuario_token"].
+            '&usu_llave_secreta='.$_POST["usu_llave_secreta"],
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
+              ),
+            ));
 
 		$response = curl_exec($curl);
 
@@ -46,81 +45,14 @@
         CURLOPT_CUSTOMREQUEST => 'GET',
         CURLOPT_HTTPHEADER => array(
             'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
-        ));
+        )));
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
 		$data = json_decode($response, true);
 
-
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$sucursal = json_decode($response, true);
-
-		/* tabla relacionada*/
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/empresa',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$empresa = json_decode($response, true);
-
-        /* tabla relacionada*/
-		$curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoAdmin',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
-        ));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$tipoAdmin = json_decode($response, true);
-
-	}
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,6 +122,7 @@
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
+                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -237,59 +170,31 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Modificar usuario "<?= $data["Detalles"][0]['usu_nombres'] ?>"</h1>
+                        <h1 class="mt-4">Modificar usuario</h1>
                         <div class="card mb-4">
                             <div class="card-body">
 
-                            <form method="post">
-									<div class="mb-3">
+                            <form method="POST">
+                                    <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Nombres</label>
-                                        <input type="hidden" name="usu_id" value="<?= $data["Detalles"][0]['usu_id'] ?>">
-                                        <input type="text" name="usu_nombres" value="<?= $data["Detalles"][0]['usu_nombres'] ?>" class="form-control">
+                                        <input type="hidden" name="usu_id" value="<?= $data["Detalles"]['usu_id'] ?>">
+                                        <input type="hidden" name="usu_usuario_token" value="<?= $data["Detalles"]['usu_usuario_token'] ?>">
+                                        <input type="hidden" name="usu_llave_secreta" value="<?= $data["Detalles"]['usu_llave_secreta'] ?>">
+                                        <input type="text" name="usu_nombres" value="<?= $data["Detalles"]['usu_nombres'] ?>" class="form-control">
                                     </div>
 									<div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Apellidos</label>
-                                        <input type="text" name="usu_apellidos" value="<?= $data["Detalles"][0]['usu_apellidos'] ?>" class="form-control">
+                                        <input type="text" name="usu_apellidos" value="<?= $data["Detalles"]['usu_apellidos'] ?>" class="form-control">
                                     </div>
 									<div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                                        <input type="text" name="usu_usuario" value="<?= $data["Detalles"][0]['usu_usuario'] ?>" class="form-control" aria-describedby="emailHelp">
+                                        <input type="text" name="usu_usuario" value="<?= $data["Detalles"]['usu_usuario'] ?>" class="form-control" aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1"  class="form-label">Clave</label>
-                                        <input type="text" name="usu_clave" value="<?= $data["Detalles"][0]['usu_clave'] ?>" class="form-control">
+                                        <input type="text" name="usu_clave" value="<?= $data["Detalles"]['usu_clave'] ?>" class="form-control">
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Asignar tipo admin</label>
-                                        <select name="tiad_id"  class="form-select form-select-sm" aria-label=".form-select-sm example" >
-                                            <option type="text" value="<?= $data["Detalles"][0]['tiad_id'] ?>"><?= $data["Detalles"][0]['tiad_nombre'] ?> - Seleccionado</option>
-											<?php foreach($tipoAdmin["Detalles"] as $TipoAdmin):?>	
-											<option type="text" value="<?=$TipoAdmin["tiad_id"]?>"><?= $TipoAdmin["tiad_nombre"] ?></option>
-											<?php endforeach?>
-										</select>
-                                    </div>
-
-									<div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Asignar empresa</label>
-                                        <select name="empr_id"  class="form-select form-select-sm" aria-label=".form-select-sm example" >
-                                            <option type="text" value="<?= $data["Detalles"][0]['empr_id'] ?>"><?= $data["Detalles"][0]['empr_nombre'] ?> - Seleccionado</option>
-											<?php foreach($empresa["Detalles"] as $empresas):?>	
-											<option type="text" value="<?=$empresas["empr_id"]?>"><?= $empresas["empr_nombre"] ?></option>
-											<?php endforeach?>
-										</select>
-                                    </div>
-
-									<div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Asignar Sucursal</label>
-                                        <select name="sucu_id"  class="form-select form-select-sm" aria-label=".form-select-sm example" >
-                                            <option type="text" value="<?= $data["Detalles"][0]['sucu_id'] ?>"><?= $data["Detalles"][0]['sucu_nombre'] ?> - Seleccionado</option>
-											<?php foreach($sucursal["Detalles"] as $sucursales):?>	
-											<option type="text" value="<?=$sucursales["sucu_id"]?>"><?= $sucursales["sucu_nombre"] ?></option>
-											<?php endforeach?>
-										</select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                    <button type="submit" class="btn btn-primary">Modificar</button>
                                     <a href="usuario_html.php" class="btn btn-danger">Cancelar</a>
                                 </form>
 

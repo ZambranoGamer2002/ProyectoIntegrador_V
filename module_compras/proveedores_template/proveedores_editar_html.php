@@ -15,8 +15,7 @@
       CURLOPT_POSTFIELDS => 
       'prov_nombre='.$_POST["prov_nombre"].
       '&prov_direccion='.$_POST["prov_direccion"].
-      '&prov_telefono='.$_POST["prov_telefono"].
-      '&sucu_id='.$_POST["sucu_id"],
+      '&prov_telefono='.$_POST["prov_telefono"],
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/x-www-form-urlencoded',
         'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
@@ -168,24 +167,23 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Modificar Provedor "<?= $data["Detalles"]["0"]['prov_nombre'] ?>"</h1>
+                        <h1 class="mt-4">Modificar Provedor "<?= $data["Detalles"]['prov_nombre'] ?>"</h1>
                         <div class="card mb-4">
                             <div class="card-body">
 
                                 <form method="post">
-                                <input type="hidden" name="prov_id" value="<?= $data["Detalles"]["0"]['prov_id'] ?>">
-                                <input type="hidden" name="sucu_id" value="<?= $valorGlobal["0"]["sucu_id"] ?>">
+                                <input type="hidden" name="prov_id" value="<?= $data["Detalles"]['prov_id'] ?>">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                                        <input type="text" name="prov_nombre" class="form-control" value="<?= $data["Detalles"]["0"]['prov_nombre'] ?>">
+                                        <input type="text" name="prov_nombre" class="form-control" value="<?= $data["Detalles"]['prov_nombre'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1"  class="form-label">Dirección</label>
-                                        <input type="text" name="prov_direccion" class="form-control" value="<?= $data["Detalles"]["0"]['prov_direccion'] ?>">
+                                        <input type="text" name="prov_direccion" class="form-control" value="<?= $data["Detalles"]['prov_direccion'] ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Telefono</label>
-                                        <input type="phone" name="prov_telefono"  class="form-control" value="<?= $data["Detalles"]["0"]['prov_telefono'] ?>">
+                                        <input type="phone" name="prov_telefono"  class="form-control" value="<?= $data["Detalles"]['prov_telefono'] ?>">
                                     </div>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                     <a href="proveedores_html.php" class="btn btn-danger">Cancelar</a>

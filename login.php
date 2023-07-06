@@ -13,8 +13,7 @@
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => 'GET',
           CURLOPT_HTTPHEADER => array(
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-          ),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='          ),
         ));
 
         $response = curl_exec($curl);
@@ -22,42 +21,23 @@
         curl_close($curl);
         $data = json_decode($response, true);
 
+
         $usuario = $_POST['usu_usuario'];
         $clave = $_POST['usu_clave'];
-        
+        var_dump($usuario);
+        var_dump($clave);
+
         if($data["Status"] == "404"){
-            //header("Location: cevicherias_vista.php");
+
         }else if($data['Detalles']['0']['usu_usuario'] == $usuario && $data['Detalles']['0']['usu_clave'] == $clave){
-            //header('Location: admin.php?sucu_id='.$data['Detalles']['0']['sucu_id']);
+
             header('Location: admin.php');
             $valorGlobal = $data['Detalles'];
             
-            // Almacena el valor en una variable de sesión para hacerla global
             $_SESSION['mi_variable_global'] = $valorGlobal;
         }
 	}
-    /*else{
-        $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-        $sucursal = json_decode($response, true);
-    }*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,11 +66,11 @@
                                     
                                         <form method="POST">
                                             
-                                                <input class="form-control" id="usu_usuario" name="usu_usuario" type="text" placeholder="Usuario" />
+                                                <input class="form-control"  name="usu_usuario" type="text" placeholder="Usuario" />
                                                 <label for="username"></label>
                                             
                                             
-                                                <input class="form-control" id="usu_clave" name="usu_clave" type="password" placeholder="Clave" />
+                                                <input class="form-control"  name="usu_clave" type="password" placeholder="Clave" />
                                                 <label for="inputPassword"></label>
                                             
                                             

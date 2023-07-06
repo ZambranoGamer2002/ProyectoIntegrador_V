@@ -21,6 +21,7 @@ $response = curl_exec($curl);
 curl_close($curl);
 $data = json_decode($response, true);
 $valorGlobal = $_SESSION['mi_variable_global'];
+
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +92,7 @@ $valorGlobal = $_SESSION['mi_variable_global'];
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
+                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -150,22 +152,23 @@ $valorGlobal = $_SESSION['mi_variable_global'];
 										<th scope="col">Nombre</th>
 										<th scope="col">Apellidos</th>
 										<th scope="col">Usuario</th>
-										<th scope="col">Tipo de admin</th>
+                                        <th scope="col">Clave</th>
 										<th scope="col" colspan="2">Operaciones</th>
+                                        
 									</tr>
                                     </thead>
-									<tbody>
-										<?php foreach($data["Detalles"] as $usuarios):?>
-                                            <?php if ($usuarios["sucu_id"] == $valorGlobal["0"]["sucu_id"]): ?>
-										<tr>
-											<td><?= $usuarios["usu_nombres"] ?></td>
+                                    <tbody>
+                                        <?php foreach($data["Detalles"] as $usuarios):?>
+									
+                                        <tr>
+                                            <td><?= $usuarios["usu_nombres"] ?></td>
 											<td><?= $usuarios["usu_apellidos"] ?></td>
 											<td><?= $usuarios["usu_usuario"] ?></td>
-											<td><?= $usuarios["tiad_nombre"] ?></td>
-											<td><a href="usuario_editar_html.php?usu_id=<?= $usuarios['usu_id'] ?>" class="btn "><i class="fa-solid fa-pen-to-square"></i></a></td>
-											<td><a href="usuario_eliminar_html.php?usu_id=<?= $usuarios['usu_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></td>
-										</tr>
-                                        <?php endif; ?>
+											<td><?= $usuarios["usu_clave"] ?></td>
+                                            
+                                            <td><a href="usuario_editar_html.php?usu_id=<?= $usuarios['usu_id'] ?>" class="btn "><i class="fa-solid fa-pen-to-square"></i></a></td>
+											<td><a href="usuario_eliminar_html.php?usu_id=<?= $usuarios['usu_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></i></td>
+                                        </tr>
 										<?php endforeach ?>
 									</tbody>
                                 </table>

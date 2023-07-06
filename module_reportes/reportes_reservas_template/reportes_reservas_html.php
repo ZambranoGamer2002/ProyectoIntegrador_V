@@ -1,23 +1,25 @@
 <?php
-$curl = curl_init();
+    session_start();
+    $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://cevicherias.informaticapp.com/reservas',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-  ),
-));
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://cevicherias.informaticapp.com/reservas',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
+    ),
+    ));
 
-$response = curl_exec($curl);
-curl_close($curl);
-$data = json_decode($response, true);
+  $response = curl_exec($curl);
+  curl_close($curl);
+  $data = json_decode($response, true);
+
 ?>
 
 <!DOCTYPE html>
@@ -136,32 +138,37 @@ $data = json_decode($response, true);
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Reporte de Reservas</h1>
+                        <h1 class="mt-4">Reporte de Reclamos</h1>
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="card-body px-0">
-                                    <a href="tipo_producto_registrar_html.php" class="btn btn-primary">Registrar</a>
+                                    <a href="../../fpdf/reportes_reservas.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i> Generar reportes </a>
                                 </div>
                                 <table class="table">
-                                    <thead class="thead-light">
-                                    <tr>
-										<th scope="col">Autor</th>
-										<th scope="col">Fecha de pedido</th>
-										<th scope="col">Fecha de reserva</th>
-										<th scope="col">Nombre Sucursal</th>
-									</tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php foreach($data["Detalles"] as $reporte_reserva):?>
-										<tr>
-											<td><?= $reporte_reserva["res_autor"] ?></td>
-											<td><?= $reporte_reserva["res_fecha_pedido"] ?></td>
-											<td><?= $reporte_reserva["res_fecha_reserva"] ?></td>
-											<td><?= $reporte_reserva["sucu_nombre"] ?></td>
-										</tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                              </table>
+                                  <thead class="thead-light">
+								<tr>
+                                        <th scope="col">Nombres y apellidos de Pedido</th>
+                                        <th scope="col">Fecha del pedido</th>
+                                        <th scope="col">Fecha de la reserva</th>
+                                        <th scope="col">Hora</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                      <?php foreach($data["Detalles"] as $reservas): ?>
+
+                                        <tr>
+
+                                            <td><?= $reservas["per_nombres"] ?> <?= $reservas["per_apellidos"] ?> </td>
+                                            <td><?= $reservas["res_fecha_pedido"] ?></td>
+                                            <td><?= $reservas["res_fecha_reserva"] ?></td>
+                                            <td><?= $reservas["res_hora"] ?></td>
+                                        </tr>
+
+                                      <?php endforeach ?>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

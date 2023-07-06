@@ -1,22 +1,25 @@
 <?php
-$curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://cevicherias.informaticapp.com/reclamos',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-  ),
-));
-$response = curl_exec($curl);
-curl_close($curl);
-$data = json_decode($response, true);
+  $curl = curl_init();
+
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://cevicherias.informaticapp.com/reclamos',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'GET',
+    CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
+    ),
+  ));
+
+  $response = curl_exec($curl);
+  curl_close($curl);
+  $data = json_decode($response, true);
+
 ?>
 
 <!DOCTYPE html>
@@ -55,10 +58,10 @@ $data = json_decode($response, true);
             </ul>
         </nav>
         <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                    <div class="nav">
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Principal
@@ -139,29 +142,27 @@ $data = json_decode($response, true);
                         <div class="card mb-2">
                             <div class="card-body">
                                 <div class="card-body px-0">
-                                    <a href="tipo_producto_registrar_html.php" class="btn btn-primary">Registrar</a>
+                                    <a href="../../fpdf/reportes_reclamos.php" target="_blank" class="btn btn-success"><i class="fas fa-file-pdf"></i> Generar reportes </a>
                                 </div>
                                 <table class="table">
-                                    <thead class="thead-light">
-                                    <tr>
-										<th scope="col">Tipos de reclamo</th>
-										<th scope="col">Descripción</th>
-										<th scope="col">Sucursal</th>
+                                  <thead class="thead-light">
+								<tr>
+								<th scope="col">Tipo de Reclamo</th>
+								<th scope="col">Descripción</th>
 									</tr>
                                   </thead>
                                   <tbody>
-                                    <?php foreach($data["Detalles"] as $reporte_reclamo):?>
-										<tr>
-											<td><?= $reporte_reclamo["recl_tipo_reclamo"] ?></td>
-											<td><?= $reporte_reclamo["recl_descrip"] ?></td>
-											<td><?= $reporte_reclamo["sucu_id"] ?></td>
-										</tr>
-                                    <?php endforeach ?>
-                                </tbody>
+								<?php foreach($data["Detalles"] as $reporte_reclamos):?>
+								<tr>
+								<td><?= $reporte_reclamos["recl_tipo_reclamo"] ?></td>
+								<td><?= $reporte_reclamos["recl_descrip"] ?></td>
+								</tr>
+								<?php endforeach ?>
+								</tbody>
                               </table>
                             </div>
                         </div>
-                    </div>
+            </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

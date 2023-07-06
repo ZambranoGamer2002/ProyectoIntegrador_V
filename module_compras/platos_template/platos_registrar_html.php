@@ -1,29 +1,26 @@
 <?php
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+        $curl = curl_init();
 
-    $curl = curl_init();
-
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://cevicherias.informaticapp.com/platos',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => '',
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 0,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => 
-      'pla_comida='.$_POST["pla_comida"].
-      '&pla_precio='.$_POST["pla_precio"].
-      '&pla_descrip='.$_POST["pla_descrip"].
-      '&sucu_id='.$_POST["sucu_id"].
-      '&tico_id='.$_POST["tico_id"],
-      CURLOPT_HTTPHEADER => array(
-        'Content-Type: application/x-www-form-urlencoded',
-        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-      ),
-    ));
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://cevicherias.informaticapp.com/platos',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS => 
+          'pla_comida='.$_POST["pla_comida"].
+          '&pla_precio='.$_POST["pla_precio"].
+          '&pla_descrip='.$_POST["pla_descrip"].
+          '&tico_id='.$_POST["tico_id"],
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/x-www-form-urlencoded',
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='          ),
+        ));
 
 		$response = curl_exec($curl);
 
@@ -31,29 +28,27 @@
 		$data = json_decode($response, true);
 		header("Location: platos_html.php");
 	}else{
-        session_start();
-    /* tabla relacionada*/ 
-        $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoComida',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
-        ));
+    $curl = curl_init();
 
-        $response = curl_exec($curl);
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoComida',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='      ),
+    ));
 
-		curl_close($curl);
-		$tipocomida = json_decode($response, true);
-        $valorGlobal = $_SESSION['mi_variable_global'];
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    $tipocomida = json_decode($response, true);
+
   }
 ?>
 <!DOCTYPE html>
@@ -169,7 +164,7 @@
 
 			<!-- TABLA -->
             <div id="layoutSidenav_content">
-                <main>
+            <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Registrar Plato de Comida</h1>
                         <div class="card mb-4">
@@ -179,8 +174,6 @@
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nombre del Plato</label>
                                         <input type="text" name="pla_comida" class="form-control">
-                                        <input type="hidden" name="sucu_id" value="<?= $valorGlobal["0"]["sucu_id"] ?>">
-                                        
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1"  class="form-label">Descripción de Plato</label>
@@ -194,12 +187,12 @@
                                     <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Seleccione el Tipo de comida</label>
                                       <select name="tico_id" class="form-select form-select-sm" aria-label=".form-select-sm example" >
-                                        <?php foreach($tipocomida["Detalles"] as $tipoComidas):?>	
-                                        <option type="text" value="<?=$tipoComidas["tico_id"]?>"><?= $tipocomida["tico_nombre"] ?></option>
+                                        <?php foreach($tipocomida["Detalles"] as $tipocomida):?>	
+                                        <option type="text" value="<?=$tipocomida["tico_id"]?>"><?= $tipocomida["tico_nombre"] ?></option>
                                         <?php endforeach?>
                                       </select>
                                     </div>
-
+                                    
                                     <button type="submit" class="btn btn-success">Registrar</button>
                                     <a href="platos_html.php" class="btn btn-danger">Cancelar</a>
                                 </form>

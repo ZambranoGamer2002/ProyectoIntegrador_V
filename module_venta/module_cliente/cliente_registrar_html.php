@@ -19,6 +19,7 @@
             '&per_telefono='.$_POST["per_telefono"].
             '&per_dni='.$_POST["per_dni"].
             '&per_correo='.$_POST["per_correo"],
+
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
             'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
@@ -32,8 +33,6 @@
 
         /*Agregando la persona a cliente */
         $idpersona = $data["per_id"];
-        $idsucursal = $_POST["sucu_id"];
-        var_dump($idsucursal);
         //var_dump($idpersona);
 
         $curl = curl_init();
@@ -48,8 +47,7 @@
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'POST',
 		CURLOPT_POSTFIELDS =>
-            'per_id='.$idpersona.
-            '&sucu_id='.$idsucursal,
+            'per_id='.$idpersona,
 		CURLOPT_HTTPHEADER => array(
 			'Content-Type: application/x-www-form-urlencoded',
 			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
@@ -189,7 +187,6 @@
                                 <form method="post">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nombres</label>
-                                        <input type="hidden" name="sucu_id" value="<?= $valorGlobal["0"]["sucu_id"] ?>">
                                         <input type="text" name="per_nombres" class="form-control" aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-3">

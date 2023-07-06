@@ -157,7 +157,6 @@
                                     </thead>
                                     <tbody>
                                       <?php foreach($data["Detalles"] as $proveedores): ?>
-                                        <?php if ($proveedores["sucu_id"] == $valorGlobal["0"]["sucu_id"]): ?>
                                       <tr>
                                         <td><?= $proveedores["prov_nombre"] ?></td>
                                         <td><?= $proveedores["prov_direccion"] ?></td>
@@ -165,7 +164,6 @@
                                         <td><a href="proveedores_editar_html.php?prov_id=<?= $proveedores['prov_id'] ?>" class="btn"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                         <td><a href="proveedores_eliminar_html.php?prov_id=<?= $proveedores['prov_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></a></td>
                                       </tr>
-                                      <?php endif; ?>
                                       <?php endforeach ?>
                                     </tbody>
                                 </table>

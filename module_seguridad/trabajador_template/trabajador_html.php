@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -13,15 +12,13 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-  ),
+    'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='  ),
 ));
 
 $response = curl_exec($curl);
 
 curl_close($curl);
 $data = json_decode($response, true);
-$valorGlobal = $_SESSION['mi_variable_global'];
 ?>
 
 <!DOCTYPE html>
@@ -137,7 +134,7 @@ $valorGlobal = $_SESSION['mi_variable_global'];
 
 			<!-- TABLA -->
             <div id="layoutSidenav_content">
-                <main>
+            <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Lista de Trabajadores</h1>
                         <div class="card mb-2">
@@ -154,13 +151,11 @@ $valorGlobal = $_SESSION['mi_variable_global'];
 										<th scope="col">Correo</th>
 										<th scope="col">Sueldo</th>
 										<th scope="col">Rol</th>
-										<th scope="col">Sucursal</th>
 										<th scope="col" colspan="2">Operaciones</th>
 									</tr>
                                     </thead>
 									<tbody>
 										<?php foreach($data["Detalles"] as $trabajador):?>
-                                        <?php if ($trabajador["sucu_id"] == $valorGlobal["0"]["sucu_id"]): ?>
 										<tr>
 											<td><?= $trabajador["per_nombres"] ?></td>
 											<td><?= $trabajador["per_apellidos"] ?></td>
@@ -168,12 +163,10 @@ $valorGlobal = $_SESSION['mi_variable_global'];
 											<td><?= $trabajador["per_correo"] ?></td>
 											<td><?= $trabajador["tra_sueldo"] ?></td>
 											<td><?= $trabajador["titra_rol"] ?></td>
-											<td><?= $trabajador["sucu_nombre"] ?></td>
 
 											<td><a href="trabajador_editar_html.php?tra_id=<?= $trabajador['tra_id'] ?>" class="btn "><i class="fa-solid fa-pen-to-square"></i></a></td>
 											<td><a href="trabajador_eliminar_html.php?tra_id=<?= $trabajador['tra_id'] ?>" class="btn"><i class="fas fa-trash" color="#FF0000" ></i></i></td>
 										</tr>
-                                        <?php endif; ?>
 										<?php endforeach ?>
 									</tbody>
                                 </table>

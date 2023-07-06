@@ -12,11 +12,13 @@
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'PUT',
-        CURLOPT_POSTFIELDS => 'per_id='.$_POST["per_id"].'&tra_sueldo='.$_POST["tra_sueldo"].'&titra_id='.$_POST["titra_id"].'&sucu_id='.$_POST["sucu_id"],
+        CURLOPT_POSTFIELDS => 
+            'per_id='.$_POST["per_id"].
+            '&tra_sueldo='.$_POST["tra_sueldo"].
+            '&titra_id='.$_POST["titra_id"],
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-        ),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        ),
         ));
 
 		$response = curl_exec($curl);
@@ -44,8 +46,7 @@
             '&per_correo='.$_POST["per_correo"],
 		CURLOPT_HTTPHEADER => array(
 			'Content-Type: application/x-www-form-urlencoded',
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='		),
 		));
 
 		$response = curl_exec($curl);
@@ -56,7 +57,7 @@
 
 		header("Location: trabajador_html.php");
 	}else{
-        session_start();
+
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -69,8 +70,7 @@
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='		),
 		));
 
 		$response = curl_exec($curl);
@@ -91,15 +91,13 @@
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
+            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='		),
 		));
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
 		$tipoTrabajador = json_decode($response, true);
-        $valorGlobal = $_SESSION['mi_variable_global'];
 	}
 ?>
 <!DOCTYPE html>
@@ -215,7 +213,7 @@
 
 			<!-- TABLA -->
             <div id="layoutSidenav_content">
-                <main>
+            <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Modificar Trabajador "<?= $data["Detalles"][0]['per_nombres'] ?>"</h1>
                         <div class="card mb-4">
@@ -224,7 +222,6 @@
 							<form method="post">
 								<div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nombres</label>
-                                        <input type="hidden" name="sucu_id" value="<?= $valorGlobal["0"]["sucu_id"] ?>">
 										<input type="hidden" name="tra_id" value="<?= $data["Detalles"][0]['tra_id'] ?>">
                                         <input type="hidden" name="per_id" value="<?= $data["Detalles"][0]['per_id'] ?>">
                                         <input type="text" name="per_nombres" value="<?= $data["Detalles"][0]['per_nombres'] ?>" class="form-control" aria-describedby="emailHelp">
@@ -259,7 +256,6 @@
 											<?php endforeach?>
 										</select>
                                     </div>
-
                                     <button type="submit" class="btn btn-primary">Modificar</button>
                                     <a href="trabajador_html.php" class="btn btn-danger">Cancelar</a>
                                 </form>

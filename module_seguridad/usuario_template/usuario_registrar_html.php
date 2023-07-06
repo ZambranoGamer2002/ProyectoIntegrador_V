@@ -3,23 +3,22 @@
 
 		$curl = curl_init();
 
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/usuarios',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'POST',
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://cevicherias.informaticapp.com/usuarios',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
 		CURLOPT_POSTFIELDS => 
-		'usu_nombres='.$_POST["usu_nombres"].
-		'&usu_apellidos='.$_POST["usu_apellidos"].
-		'&usu_usuario='.$_POST["usu_usuario"].
-		'&usu_clave='.$_POST["usu_clave"].
-		'&tiad_id='.$_POST["tiad_id"].
-		'&empr_id='.$_POST["empr_id"].
-		'&sucu_id='.$_POST["sucu_id"],
+
+            'usu_nombres='.$_POST["usu_nombres"].
+            '&usu_apellidos='.$_POST["usu_apellidos"].
+            '&usu_usuario='.$_POST["usu_usuario"].
+            '&usu_clave='.$_POST["usu_clave"],
+        
 		CURLOPT_HTTPHEADER => array(
 			'Content-Type: application/x-www-form-urlencoded',
 			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
@@ -28,79 +27,10 @@
 
 		$response = curl_exec($curl);
 
-		curl_close($curl);
-		$data = json_decode($response, true);
-		header("Location: usuario_html.php");
+        curl_close($curl);
+        $data = json_decode($response, true);
+}
 
-	}else{
-		session_start();
-		/* tabla relacionada*/
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoAdmin',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$tipoAdmin = json_decode($response, true);
-
-		/* tabla relacionada*/
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/empresa',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$empresa = json_decode($response, true);
-
-		/* tabla relacionada*/
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/sucursal',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='
-		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$sucursal = json_decode($response, true);
-		$valorGlobal = $_SESSION['mi_variable_global'];
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -170,6 +100,7 @@
                                     <a class="nav-link" href="../../module_seguridad/trabajador_template/trabajador_html.php">Registrar Trabajadores</a>
                                     <a class="nav-link" href="../../module_seguridad/usuario_template/usuario_html.php">Registrar Perfiles</a>
                                     <a class="nav-link" href="../../module_seguridad/permisos_template/permiso_html.php">Registrar Permisos</a>
+                                    <a class="nav-link" href="../../module_seguridad/empresa_template/empresa_html.php">Registrar Empresa</a>
                                     
                                 </nav>
                             </div>  
@@ -216,40 +147,33 @@
 			<!-- TABLA -->
             <div id="layoutSidenav_content">
                 <main>
+
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Registrar Usuarios</h1>
                         <div class="card mb-4">
                             <div class="card-body">
                                 <form method="post">
+
 									<div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Nombres</label>
                                         <input type="text" name="usu_nombres"class="form-control">
-										<input type="hidden" name="sucu_id" value="<?= $valorGlobal["0"]["sucu_id"] ?>">
-										<input type="hidden" name="empr_id" value="<?= $valorGlobal["0"]["empr_id"] ?>">
                                     </div>
+
 									<div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Apellidos</label>
                                         <input type="text" name="usu_apellidos"class="form-control">
                                     </div>
+
 									<div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Usuario</label>
                                         <input type="text" name="usu_usuario" class="form-control" aria-describedby="emailHelp">
                                     </div>
+
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1"  class="form-label">Clave</label>
-                                        <input type="text" name="usu_clave" class="form-control">
+                                        <input type="password" name="usu_clave" class="form-control">
                                     </div>
-
-									<div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">Asignar tipo admin</label>
-										<select name="tiad_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
-											<?php foreach($tipoAdmin["Detalles"] as $TipoAdmin):?>
-												<?php if ($TipoAdmin["tiad_id"] !== '1'): ?>
-													<option type="text" value="<?=$TipoAdmin["tiad_id"]?>"><?= $TipoAdmin["tiad_nombre"] ?></option>
-												<?php endif;?>
-											<?php endforeach?>
-										</select>
-									</div>
+                                    
                                     <button type="submit" class="btn btn-primary">Registrar</button>
                                     <a href="usuario_html.php" class="btn btn-danger">Cancelar</a>
                                 </form>
