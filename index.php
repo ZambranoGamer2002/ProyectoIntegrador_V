@@ -52,7 +52,7 @@ $data = json_decode($response, true);
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#carta">Carta</a></li>
                     <li><a href="#platos">Platos</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="register.php">Reservas</a></li>
                     <li><a href="login.php">Login/Register</a></li>
                 </ul>
             </nav>

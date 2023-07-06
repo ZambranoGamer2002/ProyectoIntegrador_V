@@ -140,6 +140,7 @@
                             </a>
                             <div class="collapse" id="collapseCompras" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="../../module_compras/tipo_comida_template/tipo_comida_html.php">Tipos Comidas</a>
                                     <a class="nav-link" href="../../module_compras/platos_template/platos_html.php">Registrar Platos</a>
                                     <a class="nav-link" href="../../module_compras/tipo_producto_template/tipo_producto_html.php">Registrar tipo de producto</a>
                                     <a class="nav-link" href="../../module_compras/productos_template/productos_html.php">Registrar Productos</a>

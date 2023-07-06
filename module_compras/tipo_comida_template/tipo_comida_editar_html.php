@@ -1,89 +1,60 @@
-<?php
+<?php 
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
+        
+    $curl = curl_init();
 
-		$curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://cevicherias.informaticapp.com/personas',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => 
-            'per_nombres='.$_POST["per_nombres"].
-            '&per_apellidos='.$_POST["per_apellidos"].
-            '&per_telefono='.$_POST["per_telefono"].
-            '&per_dni='.$_POST["per_dni"].
-            '&per_correo='.$_POST["per_correo"],
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        ),
-        ));
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoComida/'.$_GET['tico_id'],
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'PUT',
+      CURLOPT_POSTFIELDS => 
+      'tico_nombre='.$_POST["tico_nombre"],
+      CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/x-www-form-urlencoded',
+        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='      ),
+    ));   
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
 		$data = json_decode($response, true);
+		header("Location: tipo_comida_html.php");
+    
+	}else{
+        
+    $curl = curl_init();
 
-        $idpersona = $data["per_id"];
-
-		$curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://cevicherias.informaticapp.com/trabajadores',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => 
-        'per_id='.$idpersona.
-        '&tra_sueldo='.$_POST["tra_sueldo"].
-        '&titra_id='.$_POST["titra_id"],
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/x-www-form-urlencoded',
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='        ),
-        ));
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoComida/'.$_GET['tico_id'],
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      CURLOPT_HTTPHEADER => array(
+        'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='      ),
+    ));
+    
 
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		$data2 = json_decode($response, true);
-		header("Location: trabajador_html.php");
-}else{
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cevicherias.informaticapp.com/TipoTrabajador',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-            'Authorization: Basic YTJhYTA3YWRmaGRmcmV4ZmhnZGZoZGZlcnR0Z2VWYVRVZXpBOFQuSEYza25WTjZLUTVMSzBSc1Nwc0tPOm8yYW8wN29kZmhkZnJleGZoZ2RmaGRmZXJ0dGdlSGdrN1Q1dWswNGhrWFN1MG9GYmdBZFZ3dkxSbWt2dQ=='		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-		$tipoTrabajador = json_decode($response, true);
-}
-
+		$data = json_decode($response, true);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Registrar Trabajador</title>
+	<title>Modificar comida</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 	<link href="../../css/styles.css" rel="stylesheet" />
@@ -114,22 +85,22 @@
             </ul>
         </nav>
         <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
+            <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
-                        <div class="nav">
+                    <div class="nav">
                             <a class="nav-link" href="index.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Principal
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Modulos</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-sidenav-menu-heading">Modulos</div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="bi bi-receipt-cutoff"></i></div>
                                 Ventas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseVentas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="../../module_compras/tipo_comida_template/tipo_comida_html.php">Tipos Comidas</a>
                                     <a class="nav-link" href="../../module_venta/pedidos_template/pedidos_html.php">Registrar Pedidos</a>
                                     <a class="nav-link" href="../../module_venta/module_cliente/cliente_html.php">Registrar Clientes</a>
                                     <a class="nav-link" href="../../module_venta/reservas_template/reservas_html.php">Detalles de Reserva</a>
@@ -191,47 +162,19 @@
             <div id="layoutSidenav_content">
             <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Registrar Trabajador</h1>
+                        <h1 class="mt-4">Modificar Tipo de Producto : "<?= $data["Detalles"]['tico_nombre'] ?>"</h1>
                         <div class="card mb-4">
                             <div class="card-body">
 
                                 <form method="post">
-								<div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Nombres</label>
-                                        <input type="text" name="per_nombres" class="form-control" aria-describedby="emailHelp">
+                                <input type="hidden" name="tico_id" value="<?= $data["Detalles"]['tico_id'] ?>">
+                                    <div class="mb-3">                                        
+                                        <label for="exampleInputEmail1" class="form-label">Tipo de Comida</label>
+                                        <input type="text" name="tico_nombre" class="form-control" value="<?= $data["Detalles"]['tico_nombre'] ?>">                                    
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-                                        <input type="text" name="per_apellidos" class="form-control" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                                        <input type="text" name="per_telefono" class="form-control" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">DNI</label>
-                                        <input type="text" name="per_dni" class="form-control" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Correo</label>
-                                        <input type="text" name="per_correo" class="form-control" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1"  class="form-label">Sueldo</label>
-                                        <input type="text" name="tra_sueldo" class="form-control">
-                                    </div>
-
-									<div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">Asignar Tipo Trabajador</label>
-                                        <select name="titra_id" class="form-select form-select-sm" aria-label=".form-select-sm example" >
-											<?php foreach($tipoTrabajador["Detalles"] as $TipoTrabajador):?>	
-											<option type="text" value="<?=$TipoTrabajador["titra_id"]?>"><?= $TipoTrabajador["titra_rol"] ?></option>
-											<?php endforeach?>
-										</select>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Registrar</button>
-                                    <a href="trabajador_html.php" class="btn btn-danger">Cancelar</a>
+                                    
+                                    <button type="submit" class="btn btn-success">Actualizar</button>
+                                    <a href="tipo_comida_html.php" class="btn btn-danger">Cancelar</a>
                                 </form>
                             </div>
                         </div>
